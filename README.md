@@ -1,4 +1,3 @@
 # Home Assistant
 
-
-[Wiki page](https://github.com/sanderabbink/homeassistant/wiki)
+How to setup this theme: [Wiki page](https://github.com/sanderabbink/homeassistant/wiki)
