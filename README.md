@@ -1,5 +1,6 @@
 # Home Assistant
 
+**(This theme is not released yet, only the preparations)**
 How to setup this theme: [Wiki page](https://github.com/sanderabbink/homeassistant/wiki)
 
 ***
