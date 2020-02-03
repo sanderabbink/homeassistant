@@ -1,0 +1,103 @@
+# lovelace_gen
+
+# card
+type: custom:button-card
+name: {{ name }}
+deep_press: {{ deep_press|default('true') }}
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+entity: {{ entity }}
+label: "[[[ return `${states['{{entity}}'].attributes.temperature}°` ]]]"
+show_icon: false
+show_name: true
+show_label: true
+show_state: true
+tap_action: 
+  action: call-service
+  service: browser_mod.popup
+  service_data:
+    title: ' '
+    style:
+      background: transparent
+      "--iron-icon-fill-color": "#FFF"
+      "--iron-icon": "#FFF"
+      --paper-item-icon-color: white !important
+      --primary-text-color: white !important
+      --text-primary-color: white !important
+    card:
+      type: vertical-stack
+      cards:
+        - !include
+          - ../popups/{{ template|default('thermostat_popup.yaml') }}
+          - entity: {{ entity }}
+    deviceID:
+      - this
+  haptic: heavy
+styles:
+  card:
+    - border-radius: "10px"
+    - --ha-card-background: "var(--card-color-off)"
+    - box-shadow: "none"
+    - opacity: 0.5
+  label:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+    - color: var(--label-color-off)
+  state:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+    - text-transform: capitalize
+    - font-weight: bold
+    - padding-left: 10px
+    - color: var(--state-color-off)
+  img_cell:
+    - align-self: start
+    - text-align: start
+    - margin-right: 40px
+  name:
+    - justify-self: start
+    - padding-left: 10px
+    - font-weight: bold
+    - font-family: Helvetica 
+    - font-size: 13px
+    - color: var(--name-color-off)
+  grid:
+    - grid-template-areas: '"i i" "n n" "area area" "s l"'
+    - grid-template-columns: 1fr lfr
+    - grid-template-rows: 1fr min-content min-content min-content
+  custom_fields:
+    notification:
+      - background-color: var(--label-color-off)
+      - color: var(--notification-badge-color)
+      - font-weight: bold
+      - border-radius: 50%
+      - overflow: visible
+      - position: absolute
+      - left: 12%
+      - top: 12%
+      - height: 32px
+      - width: 32px
+      - font-size: 10px
+      - line-height: 32px
+custom_fields: 
+  notification: "[[[ return `${states['{{entity}}'].attributes.current_temperature}°` ]]]"
+state:
+  - value: "heat"
+    spin: false
+    styles:
+      card:
+        - opacity: 1.0
+        - --ha-card-background: "[[[ if (states['{{entity}}'].attributes.current_temperature < states['{{entity}}'].attributes.temperature) return `var(--card-color-on)`; if (states['{{entity}}'].attributes.current_temperature >= states['{{entity}}'].attributes.temperature) return `var(--card-color-off)` ]]]"
+      name:
+        - color: var(--name-color-on)
+      label:
+        - color: var(--label-color-on)
+      state:
+        - color: var(--state-color-on)
+      custom_fields:
+        notification:
+          - background-color: "[[[ if (states['{{entity}}'].attributes.current_temperature < states['{{entity}}'].attributes.temperature) return `#EE7600`; if (states['{{entity}}'].attributes.current_temperature >= states['{{entity}}'].attributes.temperature) return `#00CC66` ]]]"
+          - color: white

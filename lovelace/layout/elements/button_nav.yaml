@@ -1,0 +1,114 @@
+# lovelace_gen
+
+# card
+type: custom:button-card
+name: {{ name }}
+deep_press: {{ deep_press|default('true') }}
+icon: "{{ icon }}"
+color: {{ color|default('auto') }}
+size: {{ size|default('26px') }}
+lock:
+  enabled: {{ lock|default('false') }}
+  unlock: {{ lock_unlock|default('tap') }}
+  duration: {{ lock_duration|default('5') }}
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+entity: {{ entity|default('input_boolean.dummy1') }}
+label: {{ label|default('"&nbsp;"') }}
+show_name: {{ show_name|default('true') }}
+show_icon: {{ show_icon|default('true') }}
+show_state: {{ show_state|default('false') }}
+show_label: {{ show_label|default('true') }}
+show_last_changed: {{ show_last_changed|default('false') }}
+{% if notification %}
+custom_fields:
+  notification: "{{ notification }}"
+{% endif %}
+tap_action: 
+  action: navigate
+  navigation_path: {{ navigation_path }}
+  haptic: light
+hold_action:
+  action: navigate
+  navigation_path: {{ navigation_path }}
+  haptic: light
+styles:
+  card:
+    - border-radius: "10px"
+    - --ha-card-background: "var(--card-color-off)"
+    - box-shadow: "none"
+    - padding: {{ card_padding|default('4% 0px') }}
+  label:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+    - color: var(--label-color-off) 
+  state:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+    - text-transform: capitalize
+    - font-weight: bold
+    - padding-left: 10px
+    - color: var(--state-color-off) 
+  img_cell:
+    - align-self: start
+    - text-align: start
+    - margin-right: {{ margin_right|default('0px') }}
+  name:
+    - justify-self: start
+    - padding-left: 10px
+    - padding-bottom: 5px
+    - font-weight: bold
+    - font-family: Helvetica 
+    - font-size: 13px
+  {% if notification %}
+  custom_fields:
+    notification:
+      - background-color: "rgba(255, 255, 255, 0.1)"
+      - color: white
+      - border-radius: 11px
+      - overflow: visible
+      - position: absolute
+      - right: 7%
+      - top: 7%
+      - height: 22px
+      - min-width: 12px
+      - padding: 0px 5px
+      - font-size: 12px
+      - line-height: 22px
+  {% endif %}
+state:
+  - value: "home" 
+    spin: {{ spin_on|default('false') }} 
+    styles:
+      card:
+        - --ha-card-background: var(--card-color-on)
+        - opacity: 1.0
+        - box-shadow: none
+      icon:
+        - color: var(--icon-color-on)
+      name:
+        - color: var(--name-color-on)
+      state:
+        - color: var(--state-color-on)
+      lock:
+        - color: var(--lock-color-on) 
+      label:
+        - color: var(--label-color-on)
+  - value: "off"
+    spin: {{ spin_off|default('false') }}
+    styles:
+      card:
+        - opacity: 0.8
+      icon:
+        - color: var(--icon-color-off)
+      name:
+        - color: var(--name-color-off)
+      state:
+        - color: var(--state-color-off)
+      label:
+        - color: var(--label-color-off)
+      lock:
+        - color: var(--lock-color-off)  

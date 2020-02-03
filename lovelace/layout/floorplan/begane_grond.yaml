@@ -1,0 +1,281 @@
+image: '/local/images/beganegrond.svg'
+type: picture-elements
+style: |
+  ha-card {
+    box-shadow: none;
+    background: transparent !important;
+  }
+elements:
+  - entity: light.staande_lamp
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      right: 11%
+      top: 8%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.dressoir
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      left: 11%
+      top: 8%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.tv_meubel
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      right: 11%
+      top: 43.2%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.woonkamer
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      left: 50%
+      top: 23%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: binary_sensor.voordeur_sensor
+    image: /local/images/lock_open.svg
+    state_image:
+      'off': /local/images/lock_closed.svg
+    style:
+      height: 20px
+      right: 17.5%
+      top: 87%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.voordeur_battery_level
+    style:
+      font-size: 6px
+      line-height: 20px
+      right: calc(17.5% + 5px)
+      top: calc(87% - 7px)
+      transform: 'translate(100%, 0)'
+    type: state-label
+  - entity: binary_sensor.raamkeuken_sensor
+    image: /local/images/lock_open.svg
+    state_image:
+      'off': /local/images/lock_closed.svg
+    style:
+      bottom: 11%
+      height: 20px
+      left: 26.8%
+      transform: 'translate(0, 100%)'
+      width: 20px
+    type: image
+  - entity: sensor.raamkeuken_battery_level
+    style:
+      bottom: 11%
+      font-size: 6px
+      left: calc(26.8% + 15px)
+      transform: 'translate(0, 100%)'
+    type: state-label
+  - entity: binary_sensor.achterdeur_sensor
+    image: /local/images/lock_open.svg
+    state_image:
+      'off': /local/images/lock_closed.svg
+    style:
+      height: 20px
+      left: 26.8%
+      top: 8%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.achterdeur_battery_level
+    style:
+      font-size: 6px
+      left: calc(26.8% + 15px)
+      line-height: 20px
+      top: calc(8% - 7px)
+      transform: 'translate(0, 0)'
+    type: state-label
+  - entity: climate.toon_thermostat
+    image: /local/images/meter.svg
+    style:
+      height: 35px
+      left: 55%
+      top: 43.2%
+      transform: 'translate(0, 0)'
+      width: 35px
+    type: image
+  - attribute: current_temperature
+    entity: climate.toon_thermostat
+    style:
+      font-size: 12px
+      left: calc(55% + 40px)
+      top: calc(43.2% + 10px)
+      transform: 'translate(0, 0)'
+    suffix: ' °C'
+    type: 'custom:state-attribute-element'
+  - entity: sensor.energy_netto_today_template
+    image: /local/images/meter.svg
+    style:
+      height: 20px
+      left: 56.5%
+      top: 78%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.energy_netto_today_template
+    style:
+      font-size: 12px
+      left: calc(56.5% + 15px)
+      top: calc(78% - 6.5px)
+      transform: 'translate(0, 0)'
+    type: state-label
+  - entity: sensor.gas_usage_today
+    image: /local/images/meter.svg
+    style:
+      height: 20px
+      left: 56.5%
+      top: 74%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.gas_usage_today
+    style:
+      font-size: 12px
+      left: calc(56.5% + 15px)
+      top: calc(74% - 6.5px)
+      transform: 'translate(0, 0)'
+    type: state-label
+  - entity: vacuum.roomba
+    image: /local/images/roomba_on.svg
+    state_image:
+      'off': /local/images/roomba_off.svg
+    style:
+      height: 40px
+      left: 14%
+      top: 33%
+      transform: 'translate(0, 0)'
+      width: 40px
+    type: image
+  - entity: light.keuken
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      bottom: 18%
+      height: 35px
+      left: 22%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.tradfri_hal
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      right: 23%
+      top: 66%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.toilet
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      bottom: 12.4%
+      height: 25px
+      right: 39.5%
+      transform: 'translate(0, 100%)'
+      width: 25px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.eetkamer
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 35px
+      left: 22%
+      top: 52%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.tradfri_trapkast
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      height: 25px
+      right: 35%
+      top: 54.6%
+      transform: 'translate(0, 0)'
+      width: 25px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: binary_sensor.bewegingssensor_hal_sensor
+    image: /local/images/motion_off.svg
+    state_image:
+      'on': /local/images/motion_on.svg
+    style:
+      height: 17px
+      right: 11%
+      top: 64.6%
+      transform: 'translate(0, 0)'
+      width: 17px
+    type: image
+  - entity: sensor.bewegingssensor_hal_battery_level
+    style:
+      font-size: 6px
+      line-height: 20px
+      right: calc(11% + 15px)
+      top: calc(64.6% - 8px)
+      transform: 'translate(0, 0)'
+    type: state-label
+    
+  - entity: binary_sensor.trapkast_sensor
+    image: /local/images/lock_open.svg
+    state_image:
+      'off': /local/images/lock_closed.svg
+    style:
+      height: 20px
+      right: 29.5%
+      top: 57%
+      transform: 'translate(0, 0)'
+      width: 15px
+    type: image
+  - entity: sensor.trapkast_battery_level
+    style:
+      font-size: 6px
+      line-height: 20px
+      right: calc(29.5% + 5px)
+      top: calc(57% - 7px)
+      transform: 'translate(100%, 0)'
+    type: state-label

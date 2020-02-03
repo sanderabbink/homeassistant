@@ -1,0 +1,25 @@
+# lovelace_gen
+
+# card
+type: custom:swipe-card
+cards:
+#   - type: custom:thermostat-popup-card
+#     entity: {{ entity }}
+  - type: thermostat
+    entity: {{ entity }}
+    style: |
+      ha-card {
+        --ha-card-background: transparant;
+        background: transparant;
+        box-shadow: none;
+      }
+  - type: custom:more-info-card
+    style: |
+      ha-card {
+        --ha-card-background: transparant;
+        background: transparant;
+        box-shadow: none;
+        margin-top: -40px;
+      }
+    entity: {{ entity }}
+    title: ' '

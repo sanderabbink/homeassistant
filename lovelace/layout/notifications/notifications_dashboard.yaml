@@ -1,0 +1,86 @@
+type: custom:mod-card
+report_size: 0
+card:
+  type: vertical-stack
+  cards:
+    - type: conditional
+      conditions:
+        - entity: sensor.people_at_home
+          state_not: "0"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Aanwezigheid gedetecteerd"
+
+    - type: conditional
+      conditions:
+        - entity: alarm_control_panel.alarm_huis
+          state_not: disarmed
+        - entity: alarm_control_panel.alarm_huis
+          state_not: pending
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Het alarm is ingeschakeld!"
+          
+    - type: conditional
+      conditions:
+        - entity: vacuum.roomba
+          state: "on"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Roomba maakt de kamer schoon"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.current_lights_on
+          state_not: "0"
+        - entity: sensor.current_lights_on
+          state: "1"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Er is 1 lamp in huis aan"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.current_lights_on
+          state_not: "0"
+        - entity: sensor.current_lights_on
+          state_not: "1"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Er zijn [[ sensor.current_lights_on.state ]] lampen in huis aan"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.wasmachine_power
+          state_not: "0.0"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De wasmachine staat aan"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.droger_power
+          state_not: "0.0"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De droger staat aan"
+          
+    - type: markdown
+      content: " "
+      style: | 
+        ha-card{ 
+          box-shadow: none;
+          background: none;
+        }
+        ha-markdown{ 
+          margin-bottom: 60px; 
+          box-shadow: none;
+          background: none;
+        }

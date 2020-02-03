@@ -1,0 +1,17 @@
+# lovelace_gen
+
+# card
+type: entities
+style: |
+  ha-card {
+    --ha-card-background: transparant;
+    background: transparant;
+    box-shadow: none;
+  }
+entities:
+  - type: custom:custom-light-popup-card
+    entity: {{ entity }}
+    brightnessWidth: 110px
+    brightnessHeight: 380px
+    switchWidth: 110px
+    switchHeight: 380px

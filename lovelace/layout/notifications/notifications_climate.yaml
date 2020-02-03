@@ -1,0 +1,49 @@
+type: custom:mod-card
+report_size: 0
+card:
+  type: vertical-stack
+  cards:
+    - type: conditional
+      conditions:
+        - entity: sensor.toon_thermostat_preset_mode
+          state: "comfort"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De verwarming staat op comfort"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.toon_thermostat_preset_mode
+          state: "away"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De verwarming staat op weg"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.toon_thermostat_preset_mode
+          state: "home"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De verwarming staat op thuis"
+          
+    - type: conditional
+      conditions:
+        - entity: sensor.toon_thermostat_preset_mode
+          state: "sleep"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De verwarming staat op slapen"
+          
+    - type: conditional
+      conditions:
+        - entity: input_select.verwarming_automation
+          state: "Manual"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Handmatige bediening ingeschakeld"

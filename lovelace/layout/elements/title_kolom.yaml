@@ -1,0 +1,35 @@
+# lovelace_gen
+
+type: markdown
+content: "{{ content }}"
+style: |
+  ha-card {
+    font-family: Arial;
+    box-shadow: none;
+    font-weight: normal;
+    background: none;
+    line-height: 1em;
+    padding: 0px 0px 0px 0px !important;
+    color: var(--header-color);
+  }
+  ha-markdown{
+    padding: 8px 16px !important;
+  }
+  h1{
+    font-weight: bold;
+    font-size: 32pt;
+    padding-top: 30px;
+    line-height: 34pt;
+  }
+  h2{
+    font-weight: bold;
+    font-size: 14pt;
+    padding-top: 10px;
+  }
+  h3{
+    font-weight: normal;
+    font-size: 16pt;
+    line-height: 14pt !important;
+    margin-top: -10px !important;
+    padding: 0px !important;
+  }

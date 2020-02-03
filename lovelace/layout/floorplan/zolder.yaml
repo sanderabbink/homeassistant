@@ -1,0 +1,64 @@
+elements:
+  - entity: switch.wasmachine_switch
+    image: /local/images/meter.svg
+    style:
+      height: 20px
+      left: 51%
+      top: 64%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.wasmachine_power
+    style:
+      font-size: 12px
+      left: calc(51% + 15px)
+      top: calc(64% - 6.5px)
+      transform: 'translate(0, 0)'
+    type: state-label
+  - entity: switch.droger_switch
+    image: /local/images/meter.svg
+    style:
+      height: 20px
+      left: 51%
+      top: 68%
+      transform: 'translate(0, 0)'
+      width: 20px
+    type: image
+  - entity: sensor.droger_power
+    style:
+      font-size: 12px
+      left: calc(51% + 15px)
+      top: calc(68% - 6.5px)
+      transform: 'translate(0, 0)'
+    type: state-label
+  - entity: light.tradfri_zolder
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      right: 24%
+      top: 47%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+  - entity: light.zolderkamer
+    image: /local/images/light_off.svg
+    state_image:
+      'on': /local/images/light_on.svg
+    style:
+      left: 23%
+      top: 47%
+      transform: 'translate(0, 0)'
+      width: 35px
+    tap_action:
+      action: toggle
+    type: image
+image: /local/images/zolder.svg
+type: picture-elements
+style: |
+  ha-card {
+    box-shadow: none;
+    background: transparent !important;
+  }

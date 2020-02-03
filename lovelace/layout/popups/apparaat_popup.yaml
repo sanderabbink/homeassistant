@@ -1,0 +1,8 @@
+# lovelace_gen
+
+# card
+type: vertical-stack
+cards:
+  - !include 
+    - ../elements/title_kolom.yaml
+    - content: "## Popup"

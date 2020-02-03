@@ -1,0 +1,13 @@
+type: custom:mod-card
+report_size: 0
+card:
+  type: vertical-stack
+  cards:
+    - type: conditional
+      conditions:
+        - entity: sensor.current_solar_production
+          state_not: "0"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### De zonnepanelen leveren [[ sensor.current_solar_production.state ]]w op"

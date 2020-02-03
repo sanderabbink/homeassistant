@@ -1,1 +1,183 @@
+# lovelace_gen
 
+type: custom:mod-card
+style: |
+  layout-card {
+    padding: 0px;
+  }
+card:
+  type: 'custom:layout-card'
+  layout: vertical
+  max_columns: 1
+  column_width: 100%
+  cards:
+    - !include 
+      - elements/title_main.yaml
+      - content: "# {{ title }}"
+        {% if notifications %}
+        notifications: {{ notifications }}
+        {% endif %}
+        
+    - type: 'custom:layout-card'
+      layout: vertical
+      max_columns: 4
+      justify_content: left
+      cards:
+        {% for kolom in kolommen %}
+        - type: vertical-stack
+          cards:
+            - !include 
+              - elements/title_kolom.yaml
+              - content: "## {{ kolom['name'] }}"
+                
+            - type: 'custom:layout-card'
+              layout: horizontal
+              column_width: "{{ kolom['column_width']|default('33%') }}"
+              justify_content: left
+              cards:
+                {% for card in kolom['entities'] %}
+                
+                {% if card['type']|default('button') == 'button' %}
+                - !include
+                  {% if card['only_popup'] %}
+                  - elements/button_popup_only.yaml
+                  {% elif card['service_entity'] %}
+                  - elements/button_service_call_option.yaml
+                  {% else %}
+                  - elements/button.yaml
+                  {% endif %}
+                  - entity: "{{ card['entity'] }}"
+                    {% if card['name'] %}
+                    name: "{{ card['name'] }}"
+                    {% endif %}
+                    {% if card['icon'] %}
+                    icon: "{{ card['icon'] }}"
+                    {% endif %}
+                    {% if card['label']|default('true') %}
+                    label: '!include ../includes/brightness-label.yaml'
+                    {% endif %}
+                    {% if card['popup'] %}
+                    template: "{{ card['popup'] }}"
+                    {% endif %}
+                    {% if card['notification'] %}
+                    notification: "{{ card['notification'] }}"
+                    {% endif %}
+                    {% if card['service_entity'] %}
+                    service_entity: "{{ card['service_entity'] }}"
+                    option: "{{ card['option'] }}"
+                    {% endif %}
+                    grid:
+                      '!include ../includes/light-devices-grid.yaml'
+                {% endif %}
+                
+                {% if card['type'] == 'button_nav' %}
+                - !include
+                  - elements/button_nav.yaml
+                  - name: "{{ card['name'] }}"
+                    icon: "{{ card['icon'] }}"
+                    navigation_path: "{{ card['path'] }}"
+                    show_label: false
+                    {% if card['notification'] %}
+                    notification: "{{ card['notification'] }}"
+                    {% endif %}
+                {% endif %}
+                
+                {% if card['type'] == 'button_thermostat' %}
+                - !include
+                  - elements/button_thermostat.yaml
+                  - entity: "{{ card['entity'] }}"
+                    name: "{{ card['name'] }}"
+                {% endif %}
+                
+                {% if card['type'] == 'graph' %}
+                - !include
+                  - elements/graph.yaml
+                  - name: "{{ card['name'] }}"
+                    hours_to_show: "{{ card['hours_to_show']|default('12') }}"
+                    entities:
+                      {% for item in card['entities'] %}
+                      - entity: "{{ item['entity'] }}"
+                        name: "{{ item['name'] }}"
+                        color: "{{ item['color']|default('#c0392b') }}"
+                      {% endfor %}
+                {% endif %}
+                
+                {% if card['type'] == 'entities' %}
+                - type: entities
+                  entities:
+                    {% for item in card['entities'] %}
+                    - entity: "{{ item['entity'] }}"
+                    {% endfor %}
+                  show_header_toggle: false
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                      background: var(--card-color-off) !important;
+                      border-radius: 10px
+                    }
+                {% endif %}
+                
+                {% if card['type'] == 'persoon' %}
+                - !include
+                  - elements/button_nav.yaml
+                  - entity: "{{ card['entity'] }}"
+                    navigation_path: "{{ card['path'] }}"
+                    aspect_ratio: 4/1
+                    show_icon: false
+                    show_state: true
+                    card_padding: 6% 0px 2% 0px
+                    label: '!include ../includes/brightness-label.yaml'
+                    grid:
+                      '!include ../includes/light-devices-grid.yaml'
+                {% endif %}
+                
+                {% if card['type'] == 'map' %}
+                - type: map
+                  dark_mode: true
+                  default_zoom: 16
+                  entities:
+                    - entity: "{{ card['entity'] }}"
+                {% endif %}
+                
+                {% if card['type'] == 'buienradar' %}
+                - type: picture-glance
+                  title: "{{ card['name']|default('Buienradar') }}"
+                  entities: []
+                  camera_image: camera.buienradar_loop
+                {% endif %}
+                
+                {% if card['type'] == 'weer' %}
+                - type: weather-forecast
+                  entity: "{{ card['entity'] }}"
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                      background: transparent !important;
+                    }
+                {% endif %}
+                
+                {% if card['type'] == 'floorplan' %}
+                - !include floorplan/{{ card['template'] }}.yaml
+                {% endif %}
+                
+                {% if card['type'] == 'climate' %}
+                - type: 'custom:thermostat-card'
+                  entity: {{ card['entity'] }}
+                  chevron_size: 100
+                  hvac:
+                    states:
+                      'home': 'off'
+                      'comfort': 'off'
+                  attribute: preset_mode
+                  highlight_tap: true
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                      background: transparent !important;
+                    }
+                {% endif %}
+                
+                    
+                {% endfor %}
+        - break
+        {% endfor %}

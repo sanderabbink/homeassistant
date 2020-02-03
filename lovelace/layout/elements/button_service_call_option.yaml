@@ -1,0 +1,131 @@
+# lovelace_gen
+
+# card
+type: custom:button-card
+name: {{ name }}
+icon: "{{ icon }}"
+deep_press: {{ deep_press|default('true') }}
+color: {{ color|default('auto') }}
+size: {{ size|default('26px') }}
+lock:
+  enabled: {{ lock|default('false') }}
+  unlock: {{ lock_unlock|default('tap') }}
+  duration: {{ lock_duration|default('5') }}
+aspect_ratio: {{ aspect_ratio|default('1/1') }}
+entity: {{ entity }}
+label: {{ label|default('"&nbsp;"') }}
+show_name: {{ show_name|default('true') }}
+show_icon: {{ show_icon|default('true') }}
+show_state: {{ show_state|default('false') }}
+show_label: {{ show_label|default('true') }}
+show_last_changed: {{ show_last_changed|default('false') }}
+{% if notification %}
+custom_fields:
+  notification: "{{ notification }}"
+{% endif %}
+tap_action: 
+  action: call-service
+  service: {{ service|default('input_select.select_option') }}
+  service_data:
+    entity_id: {{ service_entity }}
+    "{{extra|default('option') }}": {{ option }}
+  haptic: heavy
+hold_action:
+  action: none
+styles:
+  card:
+    - border-radius: "10px"
+    - --ha-card-background: "var(--card-color-off)"
+    - box-shadow: "none"
+  label:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+#    - color: var(--primary-text-color) 
+  state:
+    - font-size: 11px
+    - font-family: Helvetica
+    - padding: 0px 10px
+    - justify-self: start
+    - text-transform: capitalize
+    - font-weight: bold
+    - padding-left: 10px
+#    - color: var(--state-color-off) 
+  grid: {{ grid }}
+  img_cell:
+    - align-self: start
+    - text-align: start
+    - margin-right: {{ margin_right|default('0px') }}
+  name:
+    - justify-self: start
+    - padding-left: 10px
+    - font-weight: bold
+    - font-family: Helvetica 
+    - font-size: 13px
+  {% if notification %}
+  custom_fields:
+    notification:
+      - background-color: "rgba(255, 255, 255, 0.1)"
+      - color: white
+      - border-radius: 11px
+      - overflow: visible
+      - position: absolute
+      - right: 7%
+      - top: 7%
+      - height: 22px
+      - min-width: 12px
+      - padding: 0px 5px
+      - font-size: 12px
+      - line-height: 22px
+  {% endif %}
+state:
+  - value: "{{ option }}" 
+    spin: {{ spin_on|default('false') }} 
+    styles:
+      card:
+        - --ha-card-background: var(--card-color-on)
+        - opacity: 1.0
+        - box-shadow: none
+      icon:
+        - color: var(--icon-color-on)
+      name:
+        - color: var(--name-color-on)
+      state:
+        - color: var(--state-color-on)
+      lock:
+        - color: var(--lock-color-on) 
+      label:
+        - color: var(--label-color-on)
+  - value: "on" 
+    spin: {{ spin_on|default('false') }} 
+    styles:
+      card:
+        - --ha-card-background: var(--card-color-on)
+        - opacity: 1.0
+        - box-shadow: none
+      icon:
+        - color: var(--icon-color-on)
+      name:
+        - color: var(--name-color-on)
+      state:
+        - color: var(--state-color-on)
+      lock:
+        - color: var(--lock-color-on) 
+      label:
+        - color: var(--label-color-on)
+  - value: "off"
+    spin: {{ spin_off|default('false') }}
+    styles:
+      card:
+        - opacity: {{ opacity_off|default('0.5') }}
+        - --ha-card-background: "{{ card_color_off|default('var(--paper-card-background-color)') }}"
+      icon:
+        - color: "{{ icon_color_off|default('var(--paper-item-icon-color)') }}"
+  #      - animation: {{ animation|default('none') }}
+      name:
+        - color: "{{ name_color_off|default('var(--primary-text-color)') }}"
+      state:
+        - color: "{{ state_color_off|default('var(--primary-text-color)') }}"
+      label:
+        - color: "{{ label_color_off|default('var(--primary-text-color)') }}"

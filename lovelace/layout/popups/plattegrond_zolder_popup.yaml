@@ -1,0 +1,6 @@
+# lovelace_gen
+    
+# card
+type: vertical-stack
+cards:
+  - !include ../floorplan/zolder.yaml

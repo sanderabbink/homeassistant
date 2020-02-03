@@ -1,0 +1,24 @@
+# lovelace_gen
+
+type: 'custom:mini-graph-card'
+entities:
+  {% for entity in entities %}
+  - entity: "{{ entity['entity'] }}"
+    name: "{{ entity['name'] }}"
+    color: "{{ entity['color'] }}"
+  {% endfor %}
+hours_to_show: "{{ hours_to_show }}"
+line_width: 2
+name: "{{ name }}"
+points_per_hour: 10
+animate: true
+show:
+  fill: true
+  labels: false
+  points: false
+style: |
+  ha-card {
+    box-shadow: none;
+    background: var(--card-color-off) !important;
+    border-radius: 10px
+  }

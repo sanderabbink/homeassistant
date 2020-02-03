@@ -1,0 +1,51 @@
+# lovelace_gen
+    
+# card
+type: vertical-stack
+cards:
+  - !include 
+    - ../elements/title_kolom.yaml
+    - content: "## Toner status"
+      
+  - type: 'custom:bar-card'
+    columns: 4
+    direction: up
+    entities:
+      - color: MediumTurquoise
+        entity: sensor.brother_printer_cyan_toner_remaining
+        icon: 'fal:tint'
+        icon_style:
+          height: 18px
+          width: 18px
+      - color: MediumOrchid
+        entity: sensor.brother_printer_magenta_toner_remaining
+        icon: 'fal:tint'
+        icon_style:
+          height: 18px
+          width: 18px
+      - color: Gold
+        entity: sensor.brother_printer_yellow_toner_remaining
+        icon: 'fal:tint'
+        icon_style:
+          height: 18px
+          width: 18px
+      - color: Black
+        entity: sensor.brother_printer_black_toner_remaining
+        icon: 'fal:tint'
+        icon_style:
+          height: 18px
+          width: 18px
+    height: 200px
+    max: 100
+    min: 0
+    padding: 2px
+    target: 20
+    title_position: bottom
+    icon_position: inside
+    unit_of_measurement: '%'
+    width: 75%
+    style: |
+      ha-card {
+        box-shadow: none;
+        background: transparent !important;
+      }

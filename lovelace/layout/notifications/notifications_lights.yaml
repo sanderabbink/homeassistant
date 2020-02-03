@@ -1,0 +1,26 @@
+type: custom:mod-card
+report_size: 0
+card:
+  type: vertical-stack
+  cards:
+    - type: conditional
+      conditions:
+        - entity: sensor.current_lights_on
+          state_not: "0"
+        - entity: sensor.current_lights_on
+          state: "1"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Er is 1 lamp in huis aan"
+
+    - type: conditional
+      conditions:
+        - entity: sensor.current_lights_on
+          state_not: "0"
+        - entity: sensor.current_lights_on
+          state_not: "1"
+      card:
+        !include
+          - ../elements/notification.yaml
+          - content: "### Er zijn [[ sensor.current_lights_on.state ]] lampen in huis aan"

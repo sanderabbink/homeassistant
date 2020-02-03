@@ -1,0 +1,31 @@
+# lovelace_gen
+    
+# card
+type: vertical-stack
+cards:
+  - type: 'custom:mini-graph-card'
+    color_thresholds:
+      - color: '#03a9f4'
+        value: 75
+      - color: '#0DA035'
+        value: 500
+      - color: '#fd9726'
+        value: 1000
+      - color: '#c0392b'
+        value: 2000
+    entities:
+      - sensor.droger_power
+    hours_to_show: 12
+    icon: 'mdi:power-plug'
+    line_width: 3
+    name: Stroom droger
+    points_per_hour: 30
+    show:
+      fill: false
+      labels: true
+      points: false
+    style: |
+      ha-card {
+        box-shadow: none;
+        background: transparent !important;
+      }
